@@ -30,7 +30,7 @@ var runCommand = cli.Command{
 			return fmt.Errorf("missing container command")
 		}
 
-		cmd := context.Args().Get(0)
+		cmd := context.Args()
 		tty := context.Bool("it")
 		err := Run(tty, cmd)
 		if err != nil {
@@ -52,7 +52,7 @@ var initCommand = cli.Command{
 		log.Infof("init come on")
 		cmd := context.Args().Get(0)
 		log.Infof("command: %s", cmd)
-		err := container.RunContainerInitProcess(cmd, nil)
+		err := container.RunContainerInitProcess()
 		if err != nil {
 			log.Error(err)
 			return err
